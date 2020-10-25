@@ -38,22 +38,21 @@ filename = appname + fileextent
 
 with os.scandir(basepath) as entries:
     for entry in entries:
-            if entry.is_dir():
-               subpath = basepath + entry.name
-               with os.scandir(subpath) as entries:
+        if entry.is_dir():
+            subpath = basepath + entry.name
+            with os.scandir(subpath) as entries:
                 for entry in entries:
-                            if entry.is_file():
-                                if entry.name == filename:
+                    if entry.is_file():
+                        if entry.name == filename:
                                         print("Located")
                                         print(entry.path)
-                            if entry.is_dir():
-                                subpath = subpath + "/" + entry.name
-
-                                with os.scandir(subpath) as entries:
-                                                    for entry in entries:
-                                                        if entry.is_file():
-                                                            if entry.name == filename:
-                                                                    print("Located")
-                                                                    print(entry.path)
-            else:
-                print("Not found")
+                    if entry.is_dir():
+                        subpath = subpath + "/" + entry.name
+                        with os.scandir(subpath) as entries:
+                            for entry in entries:
+                                if entry.is_file():
+                                    if entry.name == filename:
+                                        print("Located")
+                                        print(entry.path)
+        else:
+            print("Not found")
